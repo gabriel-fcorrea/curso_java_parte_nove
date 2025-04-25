@@ -14,12 +14,12 @@ public class ContractService {
 	}
 
 	public void processContract(Contract contract, Integer months) {
-		double basicQuota = contract.getContractValue() / months;
+		double basicQuota = contract.getContractValue() / months; // parcela sem juros
 		for (int i = 0; i <= months; i++) {
 			LocalDate dueDate = contract.getContractDate().plusMonths(i);
-			double interest = onlinePaymentService.interest(basicQuota, i);
-			double fee = onlinePaymentService.paymentFee(basicQuota + interest);
-			double quota = basicQuota + interest + fee;
+			double interest = onlinePaymentService.interest(basicQuota, i); // calculo dos juros
+			double fee = onlinePaymentService.paymentFee(basicQuota + interest); // resultado da parcela + juros
+			double quota = basicQuota + interest + fee; // soma o fee com o juros do paypal
 			contract.getInstallments().add(new Installment(dueDate, quota));
 		}
 	}

@@ -10,7 +10,7 @@ public class Contract {
 	private LocalDate contractDate;
 	private Double contractValue;
 
-	private List<Installment> installments = new ArrayList<>();
+	private List<Installment> installments = new ArrayList<>(); // representa "varias" do diagrama UML
 
 	public Contract(Integer contractNumber, LocalDate contractDate, Double contractValue) {
 		this.contractNumber = contractNumber;
